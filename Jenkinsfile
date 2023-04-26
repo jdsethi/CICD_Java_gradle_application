@@ -69,8 +69,7 @@ pipeline{
         stage('manaul approval') {
             steps {
                 script{
-                    
-                    timeout(10) {
+                    timeout(time: 10, unit: 'SECONDS') {
                         mail bcc: '', body: "<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> THe build deployment is waiting for your approval. Go to the build url for approval<br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "${currentBuild.result} CI: Project name -> ${env.JOB_NAME}", to: "sethijashandeep@gmail.com";
                     } 
                 }
