@@ -69,7 +69,7 @@ pipeline{
         stage('manaul approval') {
             steps {
                 script{
-                    timeout(time: 10, unit: 'SECONDS') {
+                    timeout(time: 10) {
                         mail bcc: '', body: "<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> The build deployment is waiting for your approval. Go to the build url for approval.<br> URL of build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "CD Approval: Project name -> ${env.JOB_NAME}", to: "sethijashandeep@gmail.com";
                         input(id: "DeployGate", message: "Deploy project on k8s cluster?", ok: 'Deploy')
                     } 
